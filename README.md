@@ -40,6 +40,7 @@ sales-etl-project/
 ├── README.md
 └── .gitignore
 ```
+
 ## How to Run
 
 Install dependencies:
