@@ -80,6 +80,10 @@ The dashboard includes:
 - Total profit
 - Total orders
 
+## Dashboard Preview
+
+![Sales ETL Dashboard](assets/dashboard.png)
+
 ## Project Summary
 
 This project demonstrates a complete ETL workflow, including data extraction, data validation, transformation, rejected record handling, and dashboard reporting. It is designed as a portfolio project to show practical skills in Python, pandas, data quality checks, and business analytics.
