@@ -1,0 +1,13 @@
+product_id,product_name,category,cost
+P001,Ramen Noodles,Food,7.00
+P002,Soup Base,Food,12.00
+P003,Chopsticks,Accessories,3.00
+P004,Cooking Pot,Kitchen,25.00
+P005,Noodle Bowl,Kitchen,6.50
+P006,Green Tea,Beverage,4.00
+P007,Soy Sauce,Seasoning,3.50
+P008,Rice Cooker,Kitchen,45.00
+P009,Snack Pack,Food,5.00
+P010,Tea Cup,Accessories,4.50
+P011,Sesame Oil,Seasoning,6.00
+P012,Milk Tea,Beverage,3.80
