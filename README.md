@@ -39,3 +39,5 @@ sales-etl-project/
 ├── requirements.txt
 ├── README.md
 └── .gitignore
+
+<img width="826" height="804" alt="image" src="https://github.com/user-attachments/assets/deb88d1b-ca09-4160-aa63-701432a92180" />
