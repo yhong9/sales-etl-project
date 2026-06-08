@@ -40,4 +40,37 @@ sales-etl-project/
 ├── README.md
 └── .gitignore
 
-<img width="826" height="804" alt="image" src="https://github.com/user-attachments/assets/deb88d1b-ca09-4160-aa63-701432a92180" />
+How to Run
+
+Install dependencies:
+
+pip install -r requirements.txt
+
+Run the ETL pipeline:
+
+python scripts/main.py
+
+Run the Streamlit dashboard:
+
+streamlit run dashboard/app.py
+
+Outputs
+
+The pipeline generates:
+
+Clean sales data
+Data quality report
+Rejected records
+Rejected records grouped by error type
+Dashboard Metrics
+
+The dashboard includes:
+
+Monthly revenue trend
+Revenue by region
+Total revenue
+Total profit
+Total orders
+Project Summary
+
+This project demonstrates a complete ETL workflow, including data extraction, data validation, transformation, rejected record handling, and dashboard reporting. It is designed as a portfolio project to show practical skills in Python, pandas, data quality checks, and business analytics.
