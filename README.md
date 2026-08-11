@@ -38,6 +38,60 @@ status, duration, completed steps, and failure information.
 - Pipeline run monitoring
 - Governed Mart data preview, search, and CSV export
 
+## Dashboard Preview
+
+### Executive Overview
+
+The landing page summarizes delivered-order sales, order and customer volume,
+review sentiment, monthly performance, and the most important business
+findings.
+
+![Olist analytics executive overview](assets/screenshots/overview.png)
+
+<details>
+<summary><strong>Sales Analysis</strong></summary>
+
+Filterable KPIs compare the selected reporting period with the immediately
+preceding equal-length period. Additional views show monthly performance and
+the sales contribution of leading states and product categories.
+
+![Olist sales analysis KPIs and trends](assets/screenshots/sales-analysis.png)
+
+![Olist geographic and product sales breakdown](assets/screenshots/sales-breakdown.png)
+
+</details>
+
+<details>
+<summary><strong>Customer Reviews</strong></summary>
+
+Review KPIs, score distribution, sentiment, and delivery-performance analysis
+connect customer satisfaction with operational outcomes.
+
+![Olist customer review analytics](assets/screenshots/customer-reviews.png)
+
+</details>
+
+<details>
+<summary><strong>Data Quality</strong></summary>
+
+Pipeline health, refresh information, documented exceptions, and
+Raw-to-Staging reconciliation make transformation decisions visible and
+auditable.
+
+![Olist pipeline and data quality monitoring](assets/screenshots/data-quality.png)
+
+</details>
+
+<details>
+<summary><strong>Data Explorer</strong></summary>
+
+Analytics-ready Mart tables can be selected, searched, previewed, and exported
+without querying PostgreSQL manually.
+
+![Olist governed Mart data explorer](assets/screenshots/data-explorer.png)
+
+</details>
+
 ## Data Quality
 
 The project checks:
