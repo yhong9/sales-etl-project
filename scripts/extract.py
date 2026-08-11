@@ -1,7 +1,7 @@
 import pandas as pd
 
 def extract_data(
-        orders_file:str="ordres.csv",
+        orders_file:str="orders.csv",
         customers_file:str="customers.csv",
         products_file:str="products.csv"
 ):

@@ -1,89 +1,137 @@
-# Sales ETL Pipeline Project
+# Olist E-Commerce ETL and Analytics
 
-This project is a Python-based ETL pipeline for sales data. It extracts raw CSV files, validates data quality, transforms and joins sales, customer, and product data, and generates clean outputs for analysis. The project also includes a Streamlit dashboard to visualize key sales metrics.
+An end-to-end portfolio project that loads the Brazilian E-Commerce Public
+Dataset by Olist into PostgreSQL, validates and transforms the data, builds
+analytics marts, and serves an interactive Streamlit dashboard.
 
-## Project Features
+This is an independent educational project. It is not affiliated with,
+sponsored by, or endorsed by Olist.
 
-- Extract raw sales, customer, and product data from CSV files
-- Validate raw data quality
-- Detect duplicate IDs, missing values, invalid dates, and negative values
-- Generate data quality reports
-- Save rejected records by error type
-- Transform and join sales data
-- Calculate revenue, cost, profit, and profit margin
-- Build an interactive Streamlit dashboard
+## Architecture
 
-## Tools Used
+```text
+Olist CSV files
+      |
+      v
+PostgreSQL Raw
+      |
+      v
+Typed and validated Staging
+      |
+      v
+Sales and Review Marts
+      |
+      v
+Streamlit Analytics Dashboard
+```
 
-- Python
-- pandas
+The orchestrated pipeline contains 18 load, quality, transformation, and Mart
+build steps. Pipeline executions are recorded in `audit.pipeline_runs` with
+status, duration, completed steps, and failure information.
+
+## Dashboard
+
+- Executive overview with business insights and recommendations
+- Sales analysis by period, state, and product category
+- Customer review sentiment and delivery-performance analysis
+- Data quality checks and Raw-to-Staging reconciliation
+- Pipeline run monitoring
+- Governed Mart data preview, search, and CSV export
+
+## Data Quality
+
+The project checks:
+
+- Missing and duplicate business keys
+- Invalid dates, prices, freight values, states, and review scores
+- Unmatched customers, orders, and products
+- Delivered orders with missing delivery results
+- Unknown and untranslated product categories
+- Multiple reviews for the same order
+- Row-count reconciliation across warehouse layers
+
+## Technology
+
+- Python and pandas
+- PostgreSQL
+- SQLAlchemy and psycopg
 - Streamlit
 - Plotly
-- Git and GitHub
 
 ## Project Structure
 
 ```text
 sales-etl-project/
-├── data/
-│   ├── raw/
-│   └── processed/
-├── scripts/
-│   ├── extract.py
-│   ├── transform.py
-│   ├── validate.py
-│   ├── load.py
-│   └── main.py
-├── dashboard/
-│   └── app.py
-├── requirements.txt
-├── README.md
-└── .gitignore
+|-- .streamlit/
+|   `-- config.toml
+|-- dashboard/
+|   |-- assets/
+|   `-- olist_app.py
+|-- data/
+|   `-- archive/                 # Local source CSV files; ignored by Git
+|-- scripts/
+|   `-- olist/
+|       |-- load_raw_*.py
+|       |-- quality_raw_*.py
+|       |-- build_staging_*.py
+|       |-- build_fact_sales.py
+|       |-- build_sales_marts.py
+|       |-- build_review_marts.py
+|       `-- run_pipeline.py
+|-- .env.example
+|-- requirements.txt
+`-- README.md
 ```
 
-## How to Run
+## Local Setup
 
-Install dependencies:
+1. Create and activate a virtual environment.
 
-```bash
-pip install -r requirements.txt
-```
+2. Install dependencies:
 
-Run the ETL pipeline:
+   ```powershell
+   python -m pip install -r requirements.txt
+   ```
 
-```bash
-python scripts/main.py
-```
+3. Create a PostgreSQL database named `olist_warehouse`, then create these
+   schemas:
 
-Run the Streamlit dashboard:
+   ```sql
+   CREATE SCHEMA IF NOT EXISTS raw;
+   CREATE SCHEMA IF NOT EXISTS staging;
+   CREATE SCHEMA IF NOT EXISTS mart;
+   ```
 
-```bash
-streamlit run dashboard/app.py
-```
+4. Copy `.env.example` to `.env` and enter the local PostgreSQL credentials.
+   Never commit `.env`.
 
-## Outputs
+5. Place the Olist CSV files in `data/archive/`. The source data is not stored
+   in this repository.
 
-The pipeline generates:
+6. Run the complete pipeline:
 
-- Clean sales data
-- Data quality report
-- Rejected records
-- Rejected records grouped by error type
+   ```powershell
+   python scripts/olist/run_pipeline.py
+   ```
 
-## Dashboard Metrics
+7. Start the dashboard from the project root:
 
-The dashboard includes:
+   ```powershell
+   python -m streamlit run dashboard/olist_app.py
+   ```
 
-- Monthly revenue trend
-- Revenue by region
-- Total revenue
-- Total profit
-- Total orders
+## Important Metric Definitions
 
-## Dashboard Preview
+- Sales includes product price and excludes freight unless explicitly labeled
+  as transaction value.
+- Sales reporting uses delivered orders.
+- Average order sales equals product sales divided by distinct orders.
+- Customers are counted with `customer_unique_id`.
+- Reviews 1-2 are Negative, 3 is Neutral, and 4-5 are Positive.
+- Late delivery means the actual customer delivery date is after the estimated
+  delivery date.
 
-![Sales ETL Dashboard](assets/dashboard.png)
+## Data Limitations
 
-## Project Summary
-
-This project demonstrates a complete ETL workflow, including data extraction, data validation, transformation, rejected record handling, and dashboard reporting. It is designed as a portfolio project to show practical skills in Python, pandas, data quality checks, and business analytics.
+Data coverage for 2016 is incomplete. The dashboard prevents KPI comparisons
+when the comparison period is not fully represented in the dataset.

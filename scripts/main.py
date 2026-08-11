@@ -9,7 +9,7 @@ from load import load_data
 
 def run_pipeline(
         orders_file: str = "orders.csv",
-        customers_file: str = " customers.csv",
+        customers_file: str = "customers.csv",
         products_file: str = "products.csv"
 ):
     print("Starting ETL pipline...")

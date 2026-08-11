@@ -6,6 +6,9 @@ __pycache__/
 venv/
 
 data/processed/
+data/archive/
+logs/
+sales_etl.db
 .DS_Store
 
 .ipynb_checkpoints/
