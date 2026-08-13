@@ -118,7 +118,11 @@ def initialize_pipeline_audit(run_id, started_at):
     engine = get_engine()
 
     with engine.begin() as connection:
-        connection.execute(text("CREATE SCHEMA IF NOT EXISTS audit;"))
+        for schema in ("raw", "staging", "mart", "audit"):
+            connection.execute(
+                text(f"CREATE SCHEMA IF NOT EXISTS {schema};")
+            )
+
         connection.execute(text("""
             CREATE TABLE IF NOT EXISTS audit.pipeline_runs (
                 run_id UUID PRIMARY KEY,
