@@ -545,6 +545,44 @@ st.markdown(
     }
 
     /* 页面标题与图标 */
+    /* Keep dashboard controls and KPI cards readable on narrow screens. */
+    @media (max-width: 1100px) {
+        [data-testid="stMain"] div[data-testid="stHorizontalBlock"] {
+            flex-wrap: wrap;
+        }
+
+        [data-testid="stMain"] div[data-testid="stHorizontalBlock"]
+        > div[data-testid="stColumn"] {
+            flex: 1 1 calc(50% - 0.75rem) !important;
+            min-width: 260px !important;
+        }
+
+        [data-testid="stMain"] div[data-testid="stMetricValue"],
+        [data-testid="stMain"] div[data-testid="stMetricValue"] > div {
+            overflow: visible !important;
+            white-space: normal !important;
+            text-overflow: clip !important;
+            overflow-wrap: anywhere;
+        }
+    }
+
+    @media (max-width: 700px) {
+        [data-testid="stMain"] div[data-testid="stHorizontalBlock"]
+        > div[data-testid="stColumn"] {
+            flex-basis: 100% !important;
+            min-width: 0 !important;
+        }
+
+        div[data-testid="stMainBlockContainer"] {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .page-heading-title {
+            font-size: 1.75rem;
+        }
+    }
+
     .page-heading {
         display: flex;
         align-items: center;
