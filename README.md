@@ -1,8 +1,16 @@
 # Olist E-Commerce ETL and Analytics
 
+[![Live Dashboard](https://img.shields.io/badge/Live_Dashboard-Open_App-35A7D7?logo=streamlit&logoColor=white)](https://sales-etl-project-8jem7cpx5bel3cxurmssvz.streamlit.app/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Neon-336791?logo=postgresql&logoColor=white)](https://neon.com/)
+
 An end-to-end portfolio project that loads the Brazilian E-Commerce Public
 Dataset by Olist into PostgreSQL, validates and transforms the data, builds
 analytics marts, and serves an interactive Streamlit dashboard.
+
+**[Open the live analytics dashboard](https://sales-etl-project-8jem7cpx5bel3cxurmssvz.streamlit.app/)**
+
+The first visit may take a few seconds while the hosted PostgreSQL compute and
+Streamlit application wake from an idle state.
 
 This is an independent educational project. It is not affiliated with,
 sponsored by, or endorsed by Olist.
@@ -30,6 +38,9 @@ build steps. Pipeline executions are recorded in `audit.pipeline_runs` with
 status, duration, completed steps, and failure information.
 
 ## Dashboard
+
+The dashboard is deployed on Streamlit Community Cloud and queries the
+analytics-ready Mart layer in Neon PostgreSQL.
 
 - Executive overview with business insights and recommendations
 - Sales analysis by period, state, and product category
