@@ -1,5 +1,6 @@
 # Olist E-Commerce ETL and Analytics
 
+[![Python Tests](https://github.com/yhong9/sales-etl-project/actions/workflows/tests.yml/badge.svg)](https://github.com/yhong9/sales-etl-project/actions/workflows/tests.yml)
 [![Live Dashboard](https://img.shields.io/badge/Live_Dashboard-Open_App-35A7D7?logo=streamlit&logoColor=white)](https://sales-etl-project-8jem7cpx5bel3cxurmssvz.streamlit.app/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Neon-336791?logo=postgresql&logoColor=white)](https://neon.com/)
 
