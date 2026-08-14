@@ -1,0 +1,39 @@
+name: Python Tests
+
+on:
+  #代码被推送到main时运行
+  push:
+    branches:
+      - main
+  #准备将代码合并到main时运行
+  pull_request:
+    branches:
+      - main
+  #可以手动触发
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  #一个名为test的工作
+  test:
+    #运行系统
+    runs-on: ubuntu-latest
+
+    steps:
+      #下载仓库
+      - name: Check out repository
+        uses: actions/checkout@v4
+      #安装Python
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      #安装依赖
+      - name: Install dependencies
+        run: python -m pip install -r requirements-dev.txt
+      #运行test
+      - name: Run tests
+        run: python -m pytest -v -p no:cacheprovider
