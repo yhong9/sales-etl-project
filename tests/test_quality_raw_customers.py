@@ -76,3 +76,24 @@ def test_valid_customer_state_formats_are_accepted(state,valid_customers,matchin
         report,
         "invalid_customer_state",
     )==0
+
+@pytest.mark.parametrize(
+    "zip_code",
+    ["1001", "010010", "ABCDE", "01-001",],
+)
+
+def test_invalid_customer_zip_codes_are_detected(zip_code, valid_customers, matching_orders):
+    valid_customers.loc[
+        0,
+        "customer_zip_code_prefix",
+    ]=zip_code
+
+    report=check_raw_customers(
+        valid_customers,
+        matching_orders,
+    )
+
+    assert issue_count(
+        report,
+        "invalid_customer_zip_code_prefix",
+    )==1
