@@ -14,4 +14,6 @@ sales_etl.db
 .DS_Store
 
 .ipynb_checkpoints/
-
+.coverage
+htmlcov/
+coverage.xml
