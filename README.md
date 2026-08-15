@@ -123,6 +123,37 @@ The project checks:
 - SQLAlchemy and psycopg
 - Streamlit
 - Plotly
+- pytest and pytest-cov
+- GitHub Actions
+
+## Testing and Continuous Integration
+
+The automated test suite validates representative business rules across the
+orders, customers, order items, products, and order reviews quality modules.
+It covers cases such as invalid order statuses, malformed dates and customer
+states, duplicate identifiers, negative prices, missing product categories,
+invalid review scores, and unmatched foreign keys.
+
+A PostgreSQL integration test exercises the review Staging transformation
+against an isolated database and verifies that multiple reviews for one order
+are reduced to the latest review. The test includes a database-name safety
+check before creating or removing schemas.
+
+GitHub Actions runs two independent jobs on pushes and pull requests to
+`main`:
+
+- Unit tests with a terminal coverage report
+- A database integration test using a temporary PostgreSQL 18 service
+
+Run the unit suite locally:
+
+```powershell
+python -m pytest -m "not integration" --cov=scripts/olist --cov-report=term-missing -v -p no:cacheprovider
+```
+
+Local integration tests are skipped by default because they require a
+dedicated database named `olist_test`. The CI workflow provisions that
+isolated database automatically.
 
 ## Project Structure
 
@@ -144,7 +175,12 @@ sales-etl-project/
 |       |-- build_sales_marts.py
 |       |-- build_review_marts.py
 |       `-- run_pipeline.py
+|-- tests/
+|   |-- integration/
+|   `-- test_quality_raw_*.py
+|-- .github/workflows/tests.yml
 |-- .env.example
+|-- requirements-dev.txt
 |-- requirements.txt
 `-- README.md
 ```
@@ -201,3 +237,14 @@ sales-etl-project/
 
 Data coverage for 2016 is incomplete. The dashboard prevents KPI comparisons
 when the comparison period is not fully represented in the dataset.
+
+## Future Improvements
+
+- Add incremental and idempotent loading instead of rebuilding every layer
+- Expand PostgreSQL integration coverage across additional Staging and Mart
+  transformations
+- Add step-level row counts and data-quality results to the pipeline audit
+  tables
+- Introduce scheduled pipeline execution and alerting for failed runs
+- Add dimensional date, customer, product, and geography models for broader BI
+  use cases

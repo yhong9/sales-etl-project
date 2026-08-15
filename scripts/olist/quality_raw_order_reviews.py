@@ -41,6 +41,7 @@ def check_raw_order_reviews(reviews, orders):
 
     add_check("total_rows", len(reviews), "info")
 
+    # Count distinct review and order identifiers.
     add_check(
         "unique_review_ids",
         reviews["review_id"].nunique(),
